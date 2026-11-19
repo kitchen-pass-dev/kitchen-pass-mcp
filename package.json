@@ -1,0 +1,37 @@
+{
+  "name": "kitchen-pass-mcp",
+  "version": "0.3.0",
+  "description": "Kitchen Pass for MCP hosts: scale recipes, diagnose cooking problems, find swaps, cost ingredients and menus, gluten-free bread answers, function order sheets and whole-menu reviews, paid per answer in USDC with x402 within local spend caps.",
+  "author": "Kitchen Pass",
+  "license": "MIT",
+  "type": "module",
+  "mcpName": "app.netlify.kitchen-pass/chef",
+  "bin": {
+    "kitchen-pass-mcp": "dist/kitchen-pass-mcp.mjs"
+  },
+  "files": [
+    "dist/kitchen-pass-mcp.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "../node_modules/.bin/tsc -p tsconfig.json && node scripts/build.mjs",
+    "typecheck": "../node_modules/.bin/tsc -p tsconfig.json",
+    "test": "../node_modules/.bin/vitest run",
+    "sync-listing": "../node_modules/.bin/tsx scripts/sync-listing.ts",
+    "make-fixtures": "../node_modules/.bin/tsx scripts/make-fixtures.ts",
+    "smoke:testnet": "../node_modules/.bin/tsx scripts/testnet-smoke.ts",
+    "prepublish-check": "../node_modules/.bin/tsx scripts/prepublish-check.ts",
+    "packed-check": "../node_modules/.bin/tsx scripts/packed-check.ts"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "@x402/core": "2.27.0",
+    "@x402/evm": "2.27.0",
+    "viem": "2.56.8",
+    "zod": "3.25.76"
+  }
+}

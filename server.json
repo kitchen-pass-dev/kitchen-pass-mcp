@@ -1,0 +1,38 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "app.netlify.kitchen-pass/chef",
+  "description": "A head chef's verified answers as tools: scale recipes, fix cooking faults, swaps, yields and costs.",
+  "version": "0.3.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "kitchen-pass-mcp",
+      "version": "0.3.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "KITCHEN_PASS_NETWORK",
+          "description": "base (real USDC) or base-sepolia (test USDC)",
+          "isRequired": true
+        },
+        {
+          "name": "KITCHEN_PASS_PAYER_KEY_FILE",
+          "description": "Absolute path to your own wallet key file (mode 600); without it the server only quotes",
+          "isRequired": false
+        },
+        {
+          "name": "KITCHEN_PASS_MAX_SPEND_PER_SESSION",
+          "description": "USD cap per session, default 0.10, at most 5",
+          "isRequired": false
+        },
+        {
+          "name": "KITCHEN_PASS_MAX_SPEND_PER_DAY",
+          "description": "USD cap per day, default 0.50, at most 20",
+          "isRequired": false
+        }
+      ]
+    }
+  ]
+}
