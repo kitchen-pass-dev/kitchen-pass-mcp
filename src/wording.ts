@@ -2,7 +2,9 @@
 // descriptions (listing.ts DESCRIPTIONS) are used word for word; everything below is added to them or used on its own.
 // Tool text uses the first name only. The three 0.2.0 tools' titles and addenda, and check_coverage's added gluten-free
 // clause, were approved on 21 Oct 2026. The two 0.3.0 tools' titles, addenda and result summaries are DRAFTS awaiting
-// Cristopher's word-for-word yes (docs/mcp-publish.md, "Version 0.3.0").
+// Cristopher's word-for-word yes (docs/mcp-publish.md, "Version 0.3.0"); approved and published 7 Nov 2026. The 0.4.0
+// tool's (get_food_pairings) title, addendum and summary, and check_coverage's added pairings clause, are DRAFTS awaiting
+// his word-for-word yes (docs/mcp-publish.md, "Version 0.4.0").
 
 /** Paid titles get " (paid, $<price>)" from the route price (tools.ts), so a price change can't leave them stale. */
 export const TITLES = {
@@ -16,6 +18,7 @@ export const TITLES = {
   calculate_menu_engineering: "Menu engineering from sales",
   plan_function_order: "Function order sheet: food quantities for an event",
   review_menu: "Whole-menu review: what to fix first",
+  get_food_pairings: "What goes with a dish: sides, sauces and garnishes",
   check_coverage: "What Kitchen Pass answers (free)",
   get_sample_answer: "Free sample answer (demo only)",
 } as const;
@@ -86,13 +89,18 @@ export const ADDENDA = {
     "on the menu) and either lines or plateCost; add unitsSold (one week) for every dish or none, for classes and the " +
     "fix-first ranking. For one dish only, use calculate_menu_price; for classes from plate costs alone, " +
     "calculate_menu_engineering costs less. Pass on each dish's action and price advice as given.",
+  get_food_pairings:
+    "Use when the user asks what side, sauce or garnish goes with a main dish. Send the dish; add role to get only " +
+    "sides, sauces or garnishes, or item to ask about one. Every verdict is advice: pass on a \"no\" with its note, and " +
+    "a \"depends\" with what it depends on. Wine and drink pairings are a free 400; an unlisted dish or item gets a free " +
+    "404 with the valid names. Allergen and gluten-free questions are refused (free 422).",
 } as const;
 
 export const FREE_DESCRIPTIONS = {
   check_coverage:
     "Free. Lists by name everything the paid Kitchen Pass tools answer today: diagnose dishes with their symptom " +
     "wordings, ingredients with answered swaps, yield ingredients with aliases (used by both calculate_yield_and_cost " +
-    "and calculate_amount_to_buy), scaling classes and tip topics, gluten-free flours, starters, swaps, techniques, " +
+    "and calculate_amount_to_buy), scaling classes and tip topics, dishes with their answered pairings, gluten-free flours, starters, swaps, techniques, " +
     "problem wordings and recipes, and the food-safety topics that are always refused. " +
     "Names only, never the answers. Call it before a paid tool when unsure whether a dish, symptom or ingredient is " +
     "covered. Use section to fetch one part only.",

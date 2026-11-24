@@ -127,6 +127,12 @@ export function answerCore(tool: string, a: any): string {
           `${Array.isArray(a.dogs) ? `, ${a.dogs.length} Dog(s)` : ""}` +
           `${Array.isArray(a.sectionReviews) && a.sectionReviews.length ? `; ${a.sectionReviews.length} section(s) to review` : ""}.`;
       }
+      // Draft summary for 0.4.0 (docs/mcp-publish.md, "Version 0.4.0"): names and counts only.
+      case "get_food_pairings": {
+        const ps = a.pairings as any[];
+        const n = (v: string) => ps.filter(x => isObj(x) && x.verdict === v).length;
+        return `Pairings for ${clip(a.dish, 60)}: ${ps.length} answer(s), ${n("yes")} yes, ${n("depends")} depends, ${n("no")} no.`;
+      }
     }
   } catch { /* fall through */ }
   return "Answer received; see api.";

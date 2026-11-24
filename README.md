@@ -1,7 +1,7 @@
 # Kitchen Pass MCP server
 
 
-Kitchen Pass answers cooking questions from a head chef's rules: scale a recipe, work out yield and cost, how much to buy, why a dish went wrong, what to use instead, gluten-free bread, a dish's menu price, menu engineering from sales, food quantities for a function, and a whole-menu review. This server makes those answers available as tools in MCP hosts such as Claude Code and Claude Desktop. It runs on your own machine and pays per answer in USDC with [x402](https://www.x402.org/), from a wallet you control, within spend caps you set.
+Kitchen Pass answers cooking questions from a head chef's rules: scale a recipe, work out yield and cost, how much to buy, why a dish went wrong, what to use instead, gluten-free bread, a dish's menu price, menu engineering from sales, food quantities for a function, a whole-menu review, and what goes with a dish. This server makes those answers available as tools in MCP hosts such as Claude Code and Claude Desktop. It runs on your own machine and pays per answer in USDC with [x402](https://www.x402.org/), from a wallet you control, within spend caps you set.
 
 ## Tools and prices
 
@@ -17,6 +17,7 @@ Kitchen Pass answers cooking questions from a head chef's rules: scale a recipe,
 | `calculate_menu_engineering` | Star, Plowhorse, Puzzle or Dog for each dish from units sold, with an action for each | $0.02 |
 | `plan_function_order` | Food per guest and totals for a plated, buffet, canapé, grazing or other function, with the weight to buy and cost per head | $1 |
 | `review_menu` | Every dish costed, classed and ranked: what to fix first, with re-cost advice | $1 |
+| `get_food_pairings` | Which sides, sauces and garnishes go with a dish: yes, no or depends, with notes | $0.01 |
 | `check_coverage` | The names of everything the paid tools answer today | free |
 | `get_sample_answer` | A fixed demo of a paid answer | free |
 
@@ -66,7 +67,7 @@ Then use `node /path/to/kitchen-pass-mcp.mjs` as the command below.
 **From npm**, always pin the exact version. An unpinned `npx -y` would run whatever is published next.
 
 ```sh
-npx -y kitchen-pass-mcp@0.3.0
+npx -y kitchen-pass-mcp@0.4.0
 ```
 
 ### 1. Make a key file
@@ -92,7 +93,7 @@ claude mcp add --scope local kitchen-pass \
   -e KITCHEN_PASS_PAYER_KEY_FILE=/path/to/kitchen-pass-payer.key \
   -e KITCHEN_PASS_MAX_SPEND_PER_SESSION=0.10 \
   -e KITCHEN_PASS_MAX_SPEND_PER_DAY=0.50 \
-  -- npx -y kitchen-pass-mcp@0.3.0
+  -- npx -y kitchen-pass-mcp@0.4.0
 ```
 
 **Claude Desktop** (`claude_desktop_config.json`):
@@ -102,7 +103,7 @@ claude mcp add --scope local kitchen-pass \
   "mcpServers": {
     "kitchen-pass": {
       "command": "npx",
-      "args": ["-y", "kitchen-pass-mcp@0.3.0"],
+      "args": ["-y", "kitchen-pass-mcp@0.4.0"],
       "env": {
         "KITCHEN_PASS_NETWORK": "base-sepolia",
         "KITCHEN_PASS_PAYER_KEY_FILE": "/path/to/kitchen-pass-payer.key",

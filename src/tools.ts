@@ -1,4 +1,4 @@
-// The twelve tools: input schemas, descriptions and hints. Every schema is a zod object with .strict() at every level,
+// The thirteen tools: input schemas, descriptions and hints. Every schema is a zod object with .strict() at every level,
 // passed to registerTool as an object (never a raw shape, which the SDK would turn into a non-strict object that drops
 // unknown keys) and never wrapped in refine/transform (which the SDK lists as an empty {}). So a misnamed field such as
 // price_per_kg is a free input error, never silently dropped from a paid call. Rules that span fields are left to the
@@ -151,8 +151,14 @@ export const SCHEMAS = {
     roundTo: z.number().min(0.01).max(100).optional(),
     dryRun: dryRun(),
   }).strict(),
+  get_food_pairings: z.object({
+    dish: z.string().min(1).max(120).describe("The main dish, e.g. roast lamb."),
+    role: z.enum(["side", "sauce", "garnish"]).optional().describe("Optional: only sides, sauces or garnishes."),
+    item: z.string().max(80).optional().describe("Optional: the side, sauce or garnish you have in mind."),
+    dryRun: dryRun(),
+  }).strict(),
   check_coverage: z.object({
-    section: z.enum(["scale", "diagnose", "substitute", "yieldCost", "glutenFree", "refused"]).optional().describe(FIELD_TEXT.section),
+    section: z.enum(["scale", "diagnose", "substitute", "pairings", "yieldCost", "glutenFree", "refused"]).optional().describe(FIELD_TEXT.section),
   }).strict(),
   get_sample_answer: z.object({}).strict(),
 } as const;
@@ -171,6 +177,7 @@ export const PAID_TOOLS: Record<PaidTool, PaidPath> = {
   calculate_menu_engineering: "/v1/menu-engineering",
   plan_function_order: "/v1/function-order",
   review_menu: "/v1/menu-review",
+  get_food_pairings: "/v1/pairings",
 };
 
 /**

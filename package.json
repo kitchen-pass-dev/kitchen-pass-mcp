@@ -1,7 +1,7 @@
 {
   "name": "kitchen-pass-mcp",
-  "version": "0.3.0",
-  "description": "Kitchen Pass for MCP hosts: scale recipes, diagnose cooking problems, find swaps, cost ingredients and menus, gluten-free bread answers, function order sheets and whole-menu reviews, paid per answer in USDC with x402 within local spend caps.",
+  "version": "0.4.0",
+  "description": "Kitchen Pass for MCP hosts: scale recipes, diagnose cooking problems, find swaps, cost ingredients and menus, gluten-free bread answers, function order sheets, whole-menu reviews and food pairings, paid per answer in USDC with x402 within local spend caps.",
   "author": "Kitchen Pass",
   "license": "MIT",
   "type": "module",
